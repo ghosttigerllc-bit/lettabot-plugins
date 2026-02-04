@@ -4,8 +4,8 @@ Community plugins for [Lettabot](https://github.com/letta-ai/lettabot).
 
 ## Available Plugins
 
-### UserMod (Telegram MTProto)
-Full Telegram user capabilities via MTProto/TDLib. Act as a real Telegram user, not just a bot.
+### Telegram UserMod
+A production-ready Telegram client built specifically for AI agents. Uses MTProto/TDLib to give agents full capabilities as regular Telegram users.
 
 **Features:**
 - Join groups and channels

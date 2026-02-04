@@ -1,6 +1,6 @@
-# UserMod - Telegram MTProto Plugin
+# Telegram UserMod
 
-Full Telegram user capabilities via MTProto/TDLib. Your Letta agent acts as a real Telegram user, not a bot.
+A production-ready Telegram client built specifically for AI agents. Uses MTProto/TDLib to give agents full capabilities as regular Telegram users.
 
 ## Why UserMod?
 
