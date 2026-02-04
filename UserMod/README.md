@@ -21,7 +21,7 @@ A production-ready Telegram client built specifically for AI agents. Uses MTProt
 - Telegram account (phone number)
 - API credentials from [my.telegram.org](https://my.telegram.org)
 
-> **Note:** This repo contains TypeScript source files. The `plugin.json` references `index.js` which is generated when you build Lettabot with the plugin installed. See [Installation](../README.md#installation).
+> **Note:** This repo contains TypeScript source files. The `plugin.json` references `index.ts` which compiles to `index.js` when you build Lettabot. The loader automatically falls back to `.js` in production builds. See the [main README](../README.md) for installation steps.
 
 ## Getting API Credentials
 
