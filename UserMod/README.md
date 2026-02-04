@@ -1,6 +1,8 @@
 # Telegram UserMod
-
+#### WHo you callin a bot?
 A production-ready Telegram client built specifically for AI agents. Uses MTProto/TDLib to give agents full capabilities as regular Telegram users.
+
+**NOTE:** This plugin requires its own telephone number, as its sign up is that of a real human user. The user will also need a telegram account or a separate phone number (total of 2). 
 
 ## Why UserMod?
 

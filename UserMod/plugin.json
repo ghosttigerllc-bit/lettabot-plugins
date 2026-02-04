@@ -5,7 +5,7 @@
   "type": "channel",
   "description": "Full user capabilities via MTProto/TDLib - act as a real Telegram user",
   "author": "Kai",
-  "main": "index.js",
+  "main": "index.ts",
 
   "requires": {
     "node": ">=18.0.0",
