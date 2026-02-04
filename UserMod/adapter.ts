@@ -195,7 +195,7 @@ Reply **approve** or **deny** to this message.`;
    * Prompt for hidden input (password entry)
    */
   private promptHiddenInput(prompt: string): Promise<string> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       process.stdout.write(prompt);
 
       const stdin = process.stdin;
@@ -206,12 +206,16 @@ Reply **approve** or **deny** to this message.`;
 
       let input = '';
 
+      const cleanup = () => {
+        stdin.setRawMode?.(wasRaw ?? false);
+        stdin.removeListener('data', onData);
+        stdin.pause();
+      };
+
       const onData = (char: string) => {
         // Handle special characters
         if (char === '\n' || char === '\r') {
-          stdin.setRawMode?.(wasRaw ?? false);
-          stdin.removeListener('data', onData);
-          stdin.pause();
+          cleanup();
           process.stdout.write('\n');
           resolve(input);
         } else if (char === '\x7f' || char === '\b') {
@@ -220,8 +224,10 @@ Reply **approve** or **deny** to this message.`;
             input = input.slice(0, -1);
           }
         } else if (char === '\x03') {
-          // Ctrl+C
-          process.exit(1);
+          // Ctrl+C - restore terminal state and reject gracefully
+          cleanup();
+          process.stdout.write('\n');
+          reject(new Error('User cancelled input'));
         } else {
           input += char;
         }
