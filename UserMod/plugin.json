@@ -1,0 +1,75 @@
+{
+  "name": "Telegram UserMod",
+  "id": "telegram-mtproto",
+  "version": "1.0.0",
+  "type": "channel",
+  "description": "Full user capabilities via MTProto/TDLib - act as a real Telegram user",
+  "author": "Kai",
+  "main": "index.js",
+
+  "requires": {
+    "node": ">=18.0.0",
+    "env": ["TELEGRAM_PHONE_NUMBER", "TELEGRAM_API_ID", "TELEGRAM_API_HASH"]
+  },
+
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "phoneNumber": {
+        "type": "string",
+        "description": "Phone number in E.164 format (e.g., +1234567890)",
+        "env": "TELEGRAM_PHONE_NUMBER"
+      },
+      "apiId": {
+        "type": "number",
+        "description": "Telegram API ID from my.telegram.org",
+        "env": "TELEGRAM_API_ID"
+      },
+      "apiHash": {
+        "type": "string",
+        "description": "Telegram API Hash from my.telegram.org",
+        "env": "TELEGRAM_API_HASH"
+      },
+      "databaseDirectory": {
+        "type": "string",
+        "description": "Directory for TDLib session data",
+        "env": "TELEGRAM_MTPROTO_DB_DIR",
+        "default": "./data/telegram-mtproto"
+      },
+      "dmPolicy": {
+        "type": "string",
+        "description": "DM policy: 'pairing', 'allowlist', or 'open'",
+        "env": "TELEGRAM_DM_POLICY",
+        "default": "pairing",
+        "enum": ["pairing", "allowlist", "open"]
+      },
+      "allowedUsers": {
+        "type": "array",
+        "description": "Telegram user IDs allowed to message (comma-separated in env)",
+        "env": "TELEGRAM_ALLOWED_USERS",
+        "items": { "type": "number" }
+      },
+      "groupPolicy": {
+        "type": "string",
+        "description": "Group response policy: 'mention', 'reply', 'both', or 'off'",
+        "env": "TELEGRAM_GROUP_POLICY",
+        "default": "both",
+        "enum": ["mention", "reply", "both", "off"]
+      },
+      "adminChatId": {
+        "type": "number",
+        "description": "Chat ID for admin pairing notifications",
+        "env": "TELEGRAM_ADMIN_CHAT_ID"
+      }
+    },
+    "required": ["phoneNumber", "apiId", "apiHash"]
+  },
+
+  "features": {
+    "pairing": true,
+    "groups": true,
+    "editing": false,
+    "typing": true,
+    "media": false
+  }
+}
